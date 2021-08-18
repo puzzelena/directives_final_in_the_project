@@ -1,3 +1,4 @@
+import { EventEmitter } from "@angular/core";
 import { Recipe } from "./recipe.model";
 
 export class RecipeService {
@@ -20,4 +21,7 @@ export class RecipeService {
 
           // after all we will provide our recipe service component in the recipes.component.ts
       }
+
+      recipeSelected = new EventEmitter<Recipe>();
+      // it will hold Recipe data
 }

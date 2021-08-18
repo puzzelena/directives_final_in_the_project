@@ -9,7 +9,9 @@
     <app-recipe-item
       *ngFor="let recipeEl of recipes"
       [recipe]="recipeEl"
-      (recipeSelected)="onRecipeSelected(recipeEl)"></app-recipe-item>
+      ></app-recipe-item>
+      <!-- here we deleted the event because we use service for it
+      and after we can get rid of onRecipeSelected method in the recipe-list.component.ts-->
   </div>
 </div>
 
