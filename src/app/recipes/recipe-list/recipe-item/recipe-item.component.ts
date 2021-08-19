@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Recipe } from '../../recipe.model';
-import { RecipeService } from '../../recipe.service';
+// import { RecipeService } from '../../recipe.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -11,15 +11,15 @@ import { RecipeService } from '../../recipe.service';
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe;
 
-
+/*
   constructor(private recipeService: RecipeService) { 
     // we injected the recipe service
   }
-
+*/
   ngOnInit() {
   }
 
-  onSelected() {
+  /*onSelected() {
     // we use the recipeservice event emmmiter
     // where we will emmit the recipe of this recipe item component
     // because this one we want to select and the data we want to pass
@@ -27,5 +27,5 @@ export class RecipeItemComponent implements OnInit {
     // and remove listener for this functionality
    this.recipeService.recipeSelected.emit(this.recipe)
   }
-
+*/
 }

@@ -40,6 +40,11 @@ export class RecipeService {
           // after all we will provide our recipe service component in the recipes.component.ts
       }
 
+      getRecipe(index: number){
+          return this.recipes.slice()[index]
+          // slice method will provide a copy of this method
+      }
+
       recipeSelected = new EventEmitter<Recipe>();
       // it will hold Recipe data
 
