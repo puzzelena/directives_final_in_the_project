@@ -10,7 +10,8 @@ import { Recipe } from '../../recipe.model';
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe;
-
+  @Input() index: number;
+  // now we can input from the outside
 /*
   constructor(private recipeService: RecipeService) { 
     // we injected the recipe service
