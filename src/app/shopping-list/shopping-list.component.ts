@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
@@ -10,6 +11,7 @@ import { ShoppingListService } from './shopping-list.service';
 })
 export class ShoppingListComponent implements OnInit {
   ingredients: Ingredient[]
+  private igChangeSub: Subscription
 
   // we set here uninitialized array
   // and we inject our shopping-list
@@ -20,7 +22,7 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit() {
     // as good practice all the initializations we make in ngOnInit
     this.ingredients = this.slService.getIngredients();
-    this.slService.ingredientsChanged
+    this.igChangeSub = this.slService.ingredientsChanged
     .subscribe(
       (ingredients: Ingredient[]) => {
         this.ingredients = ingredients

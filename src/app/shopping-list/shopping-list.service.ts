@@ -1,8 +1,11 @@
 import { EventEmitter } from "@angular/core";
+import { Subject } from 'rxjs'
+
 import { Ingredient } from "../shared/ingredient.model";
 
 export class ShoppingListService {
-    ingredientsChanged = new EventEmitter<Ingredient[]>()
+    // ingredientsChanged = new EventEmitter<Ingredient[]>()
+    ingredientsChanged = new Subject<Ingredient[]>()
     // first we copy all the ingredients from shopping-list.component.ts
     private ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
@@ -20,7 +23,8 @@ export class ShoppingListService {
 
       addIngredient(ingredient: Ingredient) {
         this.ingredients.push(ingredient)
-        this.ingredientsChanged.emit(this.ingredients.slice())
+       // this.ingredientsChanged.emit(this.ingredients.slice())
+       this.ingredientsChanged.next(this.ingredients.slice())
         // we call ingredientsChanged and emit a new event with the passed value inside
         // our original ingredients array that is working with a copy of it 
       }
@@ -35,7 +39,8 @@ export class ShoppingListService {
        // to a list of elements
        // push cant handle an array
 
-       this.ingredientsChanged.emit(this.ingredients.slice())
+       // this.ingredientsChanged.emit(this.ingredients.slice())
+       this.ingredientsChanged.next(this.ingredients.slice())
        // we need to emit these ingredients and here we pass a copy of it
        
 

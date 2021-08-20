@@ -1,4 +1,5 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model";
@@ -6,6 +7,7 @@ import { Recipe } from "./recipe.model";
 @Injectable()
 
 export class RecipeService {
+    // recipeSelected = new Subject<Recipe>();
     // recipeService is working on mnaging parts of the recipe
     // therefore we go to recipe-list.component.ts and take the current recipes defined there
    private recipes: Recipe[] = [
@@ -45,7 +47,7 @@ export class RecipeService {
           // slice method will provide a copy of this method
       }
 
-      recipeSelected = new EventEmitter<Recipe>();
+      // recipeSelected = new EventEmitter<Recipe>();
       // it will hold Recipe data
 
       constructor(private slService: ShoppingListService){}
