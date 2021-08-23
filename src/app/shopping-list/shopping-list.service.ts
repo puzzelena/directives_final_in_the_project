@@ -4,8 +4,11 @@ import { Subject } from 'rxjs'
 import { Ingredient } from "../shared/ingredient.model";
 
 export class ShoppingListService {
+
     // ingredientsChanged = new EventEmitter<Ingredient[]>()
     ingredientsChanged = new Subject<Ingredient[]>()
+
+    startedEditing = new Subject<number>()
     // first we copy all the ingredients from shopping-list.component.ts
     private ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
