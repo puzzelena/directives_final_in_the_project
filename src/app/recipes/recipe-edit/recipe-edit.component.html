@@ -1,6 +1,12 @@
 <div class="row">
     <div class="col-xs-12">
-        <form>
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <!-- we set ngSubmit listener and here we listen for onSubmit()-->
+            <!-- now we will connect the fuctionality for the form
+            here we have the formGroup directory
+            we use [] for formgroup because we need to pass some data
+            and the data is recipeForm-->
+            <!-- now we will tell Angular tht the all form is managed by us-->
             <div class="row">
                 <div class="col-xs-12">
                     <button 
@@ -19,7 +25,11 @@
                         <input 
                             type="text" 
                             id="name"
-                            class="form-control">
+                            class="form-control"
+                            formControlName="name">
+        <!-- here we have formControlName directive
+        if we dont use [] then we can pass the data in the ''
+    all the data that we pass must be similar to the names declared in the recipe-edit component.ts-->
                     </div>
                 </div>
             </div>
@@ -30,7 +40,8 @@
                         <input 
                             type="text" 
                             id="imagePath"
-                            class="form-control">
+                            class="form-control"
+                            formControlName="imagePath">
                     </div>
                 </div>
              </div>
@@ -48,11 +59,12 @@
                             type="text"
                             id="description"
                             class="form-control"
-                            rows="6"></textarea>
+                            formControlName="description"
+                            rows="6">
+                        </textarea>
                     </div>
                 </div>
             </div>
-            <div class="row">
                 <div class="col-xs-12">
                     <div class="row">
                         <div class="col-xs-8">
@@ -61,7 +73,7 @@
                                 class="form-control">
                         </div>
                         <div class="col-xs-2">
-                            <input 
+                             <input 
                                 type="number"
                                 class="form-control">
                         </div>
