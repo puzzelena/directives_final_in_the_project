@@ -29,29 +29,34 @@ export class ShoppingListService {
       }
 
       addIngredient(ingredient: Ingredient) {
-        this.ingredients.push(ingredient)
+        this.ingredients.push(ingredient);
        // this.ingredientsChanged.emit(this.ingredients.slice())
-       this.ingredientsChanged.next(this.ingredients.slice())
+       this.ingredientsChanged.next(this.ingredients.slice());
         // we call ingredientsChanged and emit a new event with the passed value inside
         // our original ingredients array that is working with a copy of it 
+
       }
 
       addIngredients(ingredients: Ingredient[]) {
        // for(let ingredient of ingredients){
        //     this.addIngredient(ingredient);
        // }
-       this.ingredients.push(...ingredients)
+
+       this.ingredients.push(...ingredients);
        // we access the ingredients and call push method
        // we use spread operator which allows to turn an array of elements
        // to a list of elements
        // push cant handle an array
 
        // this.ingredientsChanged.emit(this.ingredients.slice())
-       this.ingredientsChanged.next(this.ingredients.slice())
+       this.ingredientsChanged.next(this.ingredients.slice());
        // we need to emit these ingredients and here we pass a copy of it
-       
-
+      
       }
 
+      updateIngredient(index: number, newIngredient: Ingredient){
+        this.ingredients[index] = newIngredient;
+        this.ingredientsChanged.next(this.ingredients.slice());
+      }
 
 }
