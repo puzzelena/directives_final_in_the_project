@@ -71,7 +71,8 @@
                         <div 
                             class="row"
                             *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i = index;" 
-                            [formGroupName]="i">
+                            [formGroupName]="i"
+                            style="margin-top: 10px">
                         <!-- we loop throught the form and then get the ingredient
                         this gives acces to all form controls 
                         with property binding, here we bind the i-->
@@ -89,6 +90,15 @@
                 </div>
                 <div class="col-xs-2">
                     <button class="btn btn-danger">X</button>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button 
+                            type="button"
+                            class="btn btn-success"
+                            (click)="onAddIngredient()">Add Ingredient</button>
+                    </div>
                 </div>
              </div>
         </div>
