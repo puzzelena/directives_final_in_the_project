@@ -1,7 +1,8 @@
 import {
   Component,
   OnDestroy,
-  OnInit
+  OnInit,
+  ViewChild
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
@@ -14,10 +15,14 @@ import { ShoppingListService } from '../shopping-list.service';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
+
 export class ShoppingEditComponent implements OnInit, OnDestroy {
+  @ViewChild('f') slForm: NgForm;
   subscription: Subscription;
   editMode = false;
   editedItemIndex: number;
+  editedItem: Ingredient;
+
 // here we must create a service
   constructor(private slService: ShoppingListService) {
 
@@ -29,6 +34,11 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
       (index: number) => {
         this.editedItemIndex = index;
         this.editMode = true;
+        this.editedItem = this.slService.getIngredient(index);
+        this.slForm.setValue({
+          name: this.editedItem.name,
+          amount: this.editedItem.amount
+        });
       }
     );
 
@@ -44,3 +54,5 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 }
+
+// we need to get access to the form so we need to add Viewchild()

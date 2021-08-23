@@ -24,6 +24,10 @@ export class ShoppingListService {
           // slice method doesnt get an acces to an original store of this array    
       }
 
+      getIngredient(index: number){
+        return this.ingredients[index];
+      }
+
       addIngredient(ingredient: Ingredient) {
         this.ingredients.push(ingredient)
        // this.ingredientsChanged.emit(this.ingredients.slice())
