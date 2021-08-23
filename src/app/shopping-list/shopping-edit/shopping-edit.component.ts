@@ -56,9 +56,15 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     form.reset();
   }
 
+  onClear() {
+    this.slForm.reset();
+    this.editMode = false;
+  }
+
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }
+
 }
 
 // we need to get access to the form so we need to add Viewchild()
