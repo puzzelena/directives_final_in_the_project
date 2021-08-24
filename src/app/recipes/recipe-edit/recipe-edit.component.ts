@@ -122,4 +122,10 @@ export class RecipeEditComponent implements OnInit {
     // so to make it work we need to tell Angular what is the current route and declare it in the constructor
   }
 
+  onDeleteIngredient(index: number){
+    // here we wrapped it in the () because we declared that it is FormArray and removeAt is one of the methods that arrays can execute
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index)
+    // here removeAt takes as the parameter the index that is passed in the declarede function
+  }
+
 }

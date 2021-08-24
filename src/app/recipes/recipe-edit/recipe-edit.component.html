@@ -95,7 +95,12 @@
                         formControlName="amount">
                 </div>
                 <div class="col-xs-2">
-                    <button class="btn btn-danger">X</button>
+                    <button 
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="onDeleteIngredient(i)">X</button>
+            <!-- here we provided which ingredient should be deleted and it is i-index
+            which is the index of the control we want to remove-->
                 </div>
                 <hr>
                 <div class="row">

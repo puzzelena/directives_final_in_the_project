@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
@@ -9,8 +10,9 @@ import { RecipeService } from '../recipe.service';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
+  subscription: Subscription
 
   constructor(private recipeService: RecipeService,
     private router: Router,
@@ -22,7 +24,8 @@ export class RecipeListComponent implements OnInit {
     // we will subscribe to this event
     // here we will recive a new array of recipes
     // and the data is created using a callback
-    this.recipeService.recipesChanged
+    this.subscription = this.recipeService.recipesChanged
+    // here the subscription is assigned
     .subscribe(
       (recipes: Recipe[]) => {
         // here recipes are equal to the recipes we have passed there
@@ -35,6 +38,12 @@ export class RecipeListComponent implements OnInit {
 
   onNewRecipe(){
     this.router.navigate(['new'], {relativeTo: this.route})
+  }
+
+  ngOnDestroy() {
+    // in onDestroy we can unsubscribe
+    this.subscription.unsubscribe();
+    // this is done to evit memory leaks here
   }
 
 }
