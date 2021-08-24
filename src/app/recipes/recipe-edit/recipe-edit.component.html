@@ -16,7 +16,7 @@
                     <button 
                         type="button" 
                         class="btn btn-danger"
-                        >Cancel</button>
+                        (click)="onCancel()">Cancel</button>
                         <!-- here we hooked up an event listener -->
                 </div>
             </div>
@@ -44,13 +44,16 @@
                             type="text" 
                             id="imagePath"
                             class="form-control"
-                            formControlName="imagePath">
+                            formControlName="imagePath"
+                            #imagePath>
+        <!-- here we inserted the reference #imagePath, after we can use it in img binding-->
                     </div>
                 </div>
              </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <img src="" class="img-responsive">
+                    <img [src]="imagePath.value" class="img-responsive">
+                    <!-- here is the binding of the value -->
                 </div>
             </div>
         <!-- we create form without an action because we dont want to create a request -->
