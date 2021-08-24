@@ -50,6 +50,8 @@ export class RecipeDetailComponent implements OnInit {
     // here we need to reach out the recipe.service
     // for delete operation we need to use the id
     this.recipeService.deleteRecipe(this.id);
+    // to make the recipe clear on the page after deleting we need to use router and to navigate at the /recipes
+    this.router.navigate(['/recipes'])
   }
 
 }
