@@ -74,4 +74,14 @@ export class RecipeService {
         this.recipesChanged.next(this.recipes.slice());
         // here we also update the recipes
       }
+
+      // here we will add the delete button
+
+      deleteRecipe(index: number){
+          // here we get the recipes that is calling the splice method
+          // which splice at the index for 1 element to remove it
+        this.recipes.splice(index, 1);
+        // after we call recipeChanges and emit the copy of UPDATED recipes
+        this.recipesChanged.next(this.recipes.slice());
+      }
 }

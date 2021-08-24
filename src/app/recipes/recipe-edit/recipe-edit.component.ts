@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Recipe } from '../recipe.model';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+// import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 
 @Component({
@@ -16,7 +16,9 @@ export class RecipeEditComponent implements OnInit {
   recipeForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
-              private recipeService: RecipeService) { }
+              private recipeService: RecipeService,
+              private router: Router) { }
+              // here we injected router by type Router
 
   ngOnInit() {
     this.route.params
@@ -53,6 +55,8 @@ export class RecipeEditComponent implements OnInit {
     } else {
       this.recipeService.addRecipe(this.recipeForm.value)
     }
+
+    this.onCancel();
   }
 
   onAddIngredient() {
@@ -105,6 +109,17 @@ export class RecipeEditComponent implements OnInit {
       'ingredients': recipeIngredients
     });
 
+  }
+// in onCancel we need to navigate a way
+// for that we need to create a router in the constructor using service
+
+  onCancel() {
+    // after we injeted a router
+    // we can simply access the router and navigate
+    this.router.navigate(['../'], {relativeTo: this.route});
+    // here we go up one level
+    // this will take us back to the detail page if we click on the new button it will take us back to the new recipe page
+    // so to make it work we need to tell Angular what is the current route and declare it in the constructor
   }
 
 }
