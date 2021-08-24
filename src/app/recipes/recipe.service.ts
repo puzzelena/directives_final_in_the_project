@@ -85,3 +85,6 @@ export class RecipeService {
         this.recipesChanged.next(this.recipes.slice());
       }
 }
+
+// we loss the info that we add on the page because we provide info about providers of services just in recipe component we must do it globally and provide it in the app
+// because if we nagigate on shopping-list component the provider from the recipes will be destroyed
