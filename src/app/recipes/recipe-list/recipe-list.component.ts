@@ -18,7 +18,19 @@ export class RecipeListComponent implements OnInit {
   //now in the ngOnInit we use service where we stored an array with recipes
 
   ngOnInit() {
+    // in ngOnInit we need to listen this event of recipesChanged
+    // we will subscribe to this event
+    // here we will recive a new array of recipes
+    // and the data is created using a callback
+    this.recipeService.recipesChanged
+    .subscribe(
+      (recipes: Recipe[]) => {
+        // here recipes are equal to the recipes we have passed there
+        this.recipes = recipes;
+      }
+    )
     this.recipes = this.recipeService.getRecipes();
+
   }
 
   onNewRecipe(){

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { Subject } from "rxjs/Subject";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model";
@@ -7,6 +7,9 @@ import { Recipe } from "./recipe.model";
 @Injectable()
 
 export class RecipeService {
+    recipesChanged = new Subject<Recipe[]>();
+    // here we create recipesChanged event which is a new subject
+    // in the subject we pass an array of values
     // recipeSelected = new Subject<Recipe>();
     // recipeService is working on mnaging parts of the recipe
     // therefore we go to recipe-list.component.ts and take the current recipes defined there
@@ -55,5 +58,20 @@ export class RecipeService {
       // we need to add a method into recipe service
       addIngredientsToShoppingList(ingredients: Ingredient[]) {
         this.slService.addIngredients(ingredients)
+      }
+
+// after creating a subject in the addRecipe we use this recipesChanged event and use next method
+// where we pass a new copy of values of recipes
+
+      addRecipe(recipe: Recipe){
+        this.recipes.push(recipe);
+        this.recipesChanged.next(this.recipes.slice());
+      }
+
+      updateRecipe(index: number, newRecipe: Recipe){
+        this.recipes[index] = newRecipe;
+        // here we take the element of the array at the pointed index
+        this.recipesChanged.next(this.recipes.slice());
+        // here we also update the recipes
       }
 }
